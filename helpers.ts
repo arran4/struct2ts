@@ -22,6 +22,7 @@ function FromArray<T>(Ctor: { new (v: any): T }, data?: any[] | any, def = null)
 }
 
 function ToObject(o: any, typeOrCfg: any = {}, child = false): any {
+	if (o === undefined) return null;
 	if (o == null) return null;
 	if (typeof o.toObject === 'function' && child) return o.toObject();
 
@@ -43,7 +44,8 @@ function ToObject(o: any, typeOrCfg: any = {}, child = false): any {
 
 	for (const k of Object.keys(o)) {
 		const v: any = o[k];
-		if (!v) continue;
+		if (v === undefined) continue;
+		if (v === null) continue;
 		d[k] = ToObject(v, typeOrCfg[k] || {}, true);
 	}
 
