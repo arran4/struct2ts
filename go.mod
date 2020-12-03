@@ -1,4 +1,4 @@
-module github.com/OneOfOne/struct2ts
+module github.com/arran4/struct2ts
 
 go 1.11
 
